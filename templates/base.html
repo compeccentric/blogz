@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Build-A-Blog</title>
+        <style type="text/css">
+            html {
+                width: 100%;
+            }
+            .error {
+                color: red;
+            }
+            .header ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            .header li {
+
+                float: left;
+            }
+
+            .header li a {
+                display: block;
+                padding: 8px;
+                background-color: #dddddd;
+            }
+            .title {
+                text-align: center;
+            }
+            .posts ul{
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+        <ul>
+            <li>
+                <a href="/blog">Main Blog Page</a>
+            </li>
+            <li>
+                <a href="/newpost">Add a New Post</a>
+            </li>
+        </ul>
+        </div>
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>
