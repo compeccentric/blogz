@@ -7,7 +7,7 @@
     <div class="posts">
         <ul>
             {% for post in posts %}
-            <li><h1><a href="{{post.id}}" >{{post.title}}</a></h1><h3>{{post.body}}</h3><hr></li>
+            <li><h1><a href="/blog?id={{post.id}}" >{{post.title}}</a></h1><h3>{{post.body}}</h3><hr></li>
             {% endfor %}
         </ul>
     </div>
