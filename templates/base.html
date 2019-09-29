@@ -2,36 +2,7 @@
 <html>
     <head>
         <title>Build-A-Blog</title>
-        <style type="text/css">
-            html {
-                width: 100%;
-            }
-            .error {
-                color: red;
-            }
-            .header ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-            }
-            .header li {
-
-                float: left;
-            }
-
-            .header li a {
-                display: block;
-                padding: 8px;
-                background-color: #dddddd;
-            }
-            .title {
-                text-align: center;
-            }
-            .posts ul{
-                list-style-type: none;
-            }
-        </style>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/blog.css') }}">
     </head>
     <body>
         <div class="header">
