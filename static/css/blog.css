@@ -5,6 +5,9 @@ html {
 .error {
     color: red;
 }
+.correct {
+    color: green;
+}
 .header ul {
     list-style-type: none;
     margin: 0;

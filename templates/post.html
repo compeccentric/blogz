@@ -3,7 +3,8 @@
 <h1 class="title">{{posts.title}}</h1>
     <div class="posts">
         <ul>
-            <li><h3>{{posts.body}}</h3></li>
+            <li><h3>{{posts.body}}</h3>
+                <p>Written By:<br><a href="/blog?user={{posts.owner_id}}">{{posts.owner.username}}</a><br>{{posts.time}}</p> </li>
     
         </ul>
     </div>
