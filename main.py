@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, flash, session
+from flask import Flask, request, redirect, render_template, flash, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -105,16 +105,26 @@ def logout():
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
-    posts = Blog.query.order_by(Blog.time.desc()).all()
+    page = request.args.get('page', 1, type=int)
+    posts = Blog.query.order_by(Blog.time.desc()).paginate(page, 5, False)
+    next_url = url_for('blog', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('blog', page=posts.prev_num) \
+        if posts.has_prev else None
     user_post = request.args.get("user")
     blog_post = request.args.get("id")
     if user_post:
-        posts = Blog.query.filter_by(owner_id=user_post)
-        return render_template('user.html',title="Blogz!", posts=posts)
+        page = request.args.get('page', 1, type=int)
+        posts = Blog.query.filter_by(owner_id=user_post).paginate(page, 5, False)
+        next_url = url_for('blog', page=posts.next_num) \
+            if posts.has_next else None
+        prev_url = url_for('blog', page=posts.prev_num) \
+            if posts.has_prev else None
+        return render_template('user.html',title="Blogz!", posts=posts.items, next_url=next_url, prev_url=prev_url)
     if blog_post:
         posts = Blog.query.get(blog_post)
         return render_template('post.html',title="Blogz!", posts=posts)
-    return render_template('blog.html',title="Blogz!", posts=posts)
+    return render_template('blog.html',title="Blogz!", posts=posts.items, next_url=next_url, prev_url=prev_url)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def post():

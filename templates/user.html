@@ -8,4 +8,10 @@
         <p>Written By:<br><a href="/blog?user={{post.owner_id}}">{{post.owner.username}}</a><br>{{post.time}}</p> </li>
     {% endfor %}
 </ul>
+{% if prev_url %}
+    <a href="{{ prev_url }}">Newer posts</a>
+{% endif %}
+{% if next_url %}
+    <a href="{{ next_url }}">Older posts</a>
+{% endif %}
 {% endblock %}
